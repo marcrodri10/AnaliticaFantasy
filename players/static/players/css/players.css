@@ -1,0 +1,23 @@
+.player{
+    display: flex;
+    
+}
+.team{
+    display: flex;
+}
+.player-images{
+    width: 120px;
+    position: relative;
+}
+.player-image{
+    width: 100px;
+    height: 100px;
+}
+.player-team-image {
+    position: absolute;
+    
+    bottom: 10px;
+    right: 10px; 
+    width: 50px;
+    height: auto;
+}

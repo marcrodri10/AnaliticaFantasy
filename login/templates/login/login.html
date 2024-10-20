@@ -8,8 +8,14 @@
     <link rel="stylesheet" href="{% static 'login/css/login.css' %}">
 </head>
 <body>
-    <div class="start">
-        <h1>hsuiwshu</h1>
-    </div>
+    <main id="login-main-wrapper">
+        <h1>La Liga Fantasy App</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="token">Ingrese el token:</label>
+            <input type="text" name="token" id="token">
+            <input type="submit">
+        </form>
+    </main>
 </body>
 </html>

@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'players/css/players.css' %}" />
+  </head>
+  <body>
+    <main>
+      <h1>Players</h1>
+      {%for player in players%}
+      <div class="player">
+        <div class="player-images">
+          <img
+            src="{{player.images.transparent.256x256}}"
+            alt=""
+            class="player-image"
+          />
+          <img src="{{player.team.badgeColor}}" class="player-team-image" />
+        </div>
+        <div class="player-left">
+          <p>{{player.nickname}}</p>
+          <p>{{player.playerStatus}}</p>
+        </div>
+        <div class="player-right">
+          <p>{{player.marketValue}}</p>
+          <p>{{player.points}}</p>
+          <p>{{player.averagePoints}}</p>
+        </div>
+      </div>
+      <a href="">Ver jugador</a>
+      {%endfor%}
+    </main>
+  </body>
+</html>

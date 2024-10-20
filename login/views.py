@@ -5,8 +5,3 @@ from django.shortcuts import redirect
 from django.views.generic import View, FormView, TemplateView
 
 # Create your views here.
-
-class Login(TemplateView):
-    template_name = "templates/login.html"
-
-    
