@@ -2,14 +2,31 @@
     margin: 0;
     padding: 0;
 }
-.player{
+#players-wrapper{
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+}
+.player-wrapper{
+    width: 24%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
+.player{
+    
+    display: flex;
+    gap: 20px;
 }
 .team{
     display: flex;
 }
 .player-images{
-    width: 120px;
+    width: 25%;
+    display: flex;
+    justify-content: center;
     position: relative;
 }
 .player-image{
@@ -19,8 +36,40 @@
 .player-team-image {
     position: absolute;
     
-    bottom: 10px;
-    right: 10px; 
-    width: 50px;
+    bottom: 5px;
+    right: 5px; 
+    width: 30px;
     height: auto;
+}
+.player-data-wrapper{
+    width: 75%;
+}
+.player-data{
+    display: flex;
+    height: 80%;
+}
+.player-name{
+    display: flex;
+    gap: 10px;
+}
+.player-right, .player-left{
+    display: flex; 
+    flex-direction: column;
+    margin-top: 10px;
+    height: 100%;
+}
+.player-left{
+    width: 60%;
+}
+.player-right{
+    text-align: right;
+    width: 35%;
+}
+.status, .market-value{
+    display: flex;
+    align-items: center;
+}
+.svg{
+    width: 25px;
+    height: 25px;
 }

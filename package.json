@@ -1,0 +1,14 @@
+{
+  "name": "liga_fantasy",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",  
+    "build": "vite build", 
+    "serve": "vite preview" 
+  },
+  "dependencies": {
+    "django-vite-plugin": "^4.0.4",
+    "vite": "^5.4.10"
+  }
+}

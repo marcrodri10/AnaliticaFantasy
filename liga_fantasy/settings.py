@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'login',
-    'players'
+    'players',
+    'django_vite_plugin'
 ]
 
 MIDDLEWARE = [
@@ -125,3 +126,8 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+VITE_ASSETS = {
+    "VITE_DEV_SERVER": "http://localhost:3000",  # URL donde se ejecuta el servidor Vite durante el desarrollo
+    "VITE_PROD_SERVER": "/dist/",  # Ruta para los archivos en producción
+}

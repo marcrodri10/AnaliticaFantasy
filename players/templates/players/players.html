@@ -1,37 +1,71 @@
+{% load vite %}
+{% load number %}{% load round %}{% load position %}{% load status %}
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="{% static 'players/css/players.css' %}" />
+    {% vite %} {% vite 'players/css/players.css'%}
   </head>
   <body>
     <main>
       <h1>Players</h1>
-      {%for player in data_paged%}
-      <div class="player">
-        <div class="player-images">
-          <img
-            src="{{player.images.transparent.256x256}}"
-            alt=""
-            class="player-image"
-          />
-          <img src="{{player.team.badgeColor}}" class="player-team-image" />
+      <div id="players-wrapper">
+        {%for player in data_paged%}
+        <div class="player-wrapper">
+          <div class="player">
+            <div class="player-images">
+              <img
+                src="{{player.images.transparent.256x256}}"
+                alt=""
+                class="player-image"
+              />
+              <img src="{{player.team.badgeColor}}" class="player-team-image" />
+            </div>
+            <div class="player-data-wrapper">
+              <div class="player-data">
+                <div class="player-left">
+                  <div class="player-name">
+                    <p>{{player.positionId|position|upper}}</p>
+                    <p>{{player.nickname}}</p>
+                  </div>
+                  <div class="status">
+                    {% if player.playerStatus == "ok" %}
+                      <img src="{% static 'players/img/tick.svg' %}" alt="ok" class="svg">
+                      <p>Alineable</p>
+                    {% elif player.playerStatus == "injured" %}
+                      <img src="{% static 'players/img/injured.svg' %}" alt="injured" class="svg">
+                      <p>Lesionado</p>
+                    {% elif player.playerStatus == "suspended" %}
+                      <img src="{% static 'players/img/suspended.svg' %}" alt="suspended" class="svg">
+                      <p>Suspendido</p>
+                    {% elif player.playerStatus == "doubtful" %}
+                      <img src="{% static 'players/img/doubtful.svg' %}" alt="doubtful" class="svg">
+                      <p>Dudoso</p>
+                    {% endif %}
+                  </div>
+                  <div class="market-value">
+                    <img src="{% static 'players/img/euro.svg' %}" alt="euro" class="svg">
+                    <p>{{player.marketValue|number}}</p>
+                  </div>
+                  
+                </div>
+                <div class="player-right">
+                  
+                  <p>PFSY {{player.points}}</p>
+                  <p>{{player.averagePoints|round}}</p>
+                </div>
+              </div>
+              <a href="{%url 'player' player.id%}">Ver jugador</a>
+            </div>
+          </div> 
         </div>
-        <div class="player-left">
-          <p>{{player.nickname}}</p>
-          <p>{{player.playerStatus}}</p>
-        </div>
-        <div class="player-right">
-          <p>{{player.marketValue}}</p>
-          <p>{{player.points}}</p>
-          <p>{{player.averagePoints}}</p>
-        </div>
+        
+        {%endfor%}
       </div>
-      <a href="{%url 'player' player.id%}">Ver jugador</a>
-      {%endfor%}
     </main>
   </body>
 </html>
