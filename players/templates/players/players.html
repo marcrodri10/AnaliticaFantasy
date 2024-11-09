@@ -10,7 +10,7 @@
   <body>
     <main>
       <h1>Players</h1>
-      {%for player in players%}
+      {%for player in data_paged%}
       <div class="player">
         <div class="player-images">
           <img
@@ -30,7 +30,7 @@
           <p>{{player.averagePoints}}</p>
         </div>
       </div>
-      <a href="">Ver jugador</a>
+      <a href="{%url 'player' player.id%}">Ver jugador</a>
       {%endfor%}
     </main>
   </body>

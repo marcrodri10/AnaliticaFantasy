@@ -1,8 +1,14 @@
-*{
-    margin: 0;
-    padding: 0;
+
+#player-main-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .player{
+    display: flex;
+    flex-direction: column;
+}
+.player-data{
     display: flex;
 }
 .team{
