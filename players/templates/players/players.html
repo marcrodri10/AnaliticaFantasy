@@ -8,10 +8,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    {% vite %} {% vite 'players/css/players.css'%}
+    {% vite %} 
+    {% vite 'players/css/players.css'%}
+    {% vite 'players/js/players.js'%}
   </head>
   <body>
-    <main>
+    <main id="main">
       <h1>Players</h1>
       <div id="players-wrapper">
         {%for player in data_paged%}
@@ -29,7 +31,7 @@
               <div class="player-data">
                 <div class="player-left">
                   <div class="player-name">
-                    <p>{{player.positionId|position|upper}}</p>
+                    <p class="position-{{player.positionId|position|upper}}">{{player.positionId|position|upper}}</p>
                     <p>{{player.nickname}}</p>
                   </div>
                   <div class="status">
@@ -55,16 +57,20 @@
                 </div>
                 <div class="player-right">
                   
-                  <p>PFSY {{player.points}}</p>
-                  <p>{{player.averagePoints|round}}</p>
+                  <p class="font-20"><span class="gray-text font-12">PFSY: </span> {{player.points}}</p>
+                  <p class="font-12"><span class="gray-text font-12">MEDIA: </span> {{player.averagePoints|round}}</p>
                 </div>
               </div>
-              <a href="{%url 'player' player.id%}">Ver jugador</a>
             </div>
           </div> 
         </div>
         
         {%endfor%}
+        
+      </div>
+      <div class="pagination">
+        <button class="previous">Anterior</button>
+        <button class="next">Siguiente</button>
       </div>
     </main>
   </body>

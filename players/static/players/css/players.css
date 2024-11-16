@@ -5,25 +5,31 @@
 #players-wrapper{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     gap: 10px;
+    margin: 0 10px;
+
 }
 .player-wrapper{
     width: 24%;
     display: flex;
     flex-direction: column;
     border: 1px solid black;
+    background-color: rgb(29, 32, 43);
+    color: white;
+    border-radius: 5px;
 }
 .player{
     
     display: flex;
-    gap: 20px;
+    gap: 5px;
 }
 .team{
     display: flex;
 }
 .player-images{
+    background-color: black;
     width: 25%;
     display: flex;
     justify-content: center;
@@ -46,7 +52,8 @@
 }
 .player-data{
     display: flex;
-    height: 80%;
+    height: 100%;
+    justify-content: space-around;
 }
 .player-name{
     display: flex;
@@ -59,11 +66,12 @@
     height: 100%;
 }
 .player-left{
-    width: 60%;
+    width: 62%;
 }
 .player-right{
     text-align: right;
-    width: 35%;
+    width: 28%;
+    gap: 8px;
 }
 .status, .market-value{
     display: flex;
@@ -72,4 +80,35 @@
 .svg{
     width: 25px;
     height: 25px;
+}
+.gray-text{
+    font-weight: 600;
+    color: rgb(138, 138, 138);
+}
+.font-12{
+    font-size: 0.7rem;
+}
+.font-20{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.position-POR{
+    background: rgb(193,105,0);
+    background: linear-gradient(90deg, rgba(193,105,0,1) 10%, rgba(244,117,10,1) 60%);
+}
+.position-DEF{
+    background: rgb(114,29,140);
+    background: linear-gradient(90deg, rgba(114,29,140,1) 10%, rgb(128, 67, 185) 60%);
+}
+.position-CEN{
+    background: rgb(236,179,14);
+    background: linear-gradient(90deg, rgba(236,179,14,1) 10%, rgba(252,209,0,1) 60%);
+}
+.position-DEL{
+    background: rgb(14,154,236);
+    background: linear-gradient(90deg, rgba(14,154,236,1) 10%, rgba(0,202,252,1) 60%);
+}
+.pagination{
+    margin-top: 10px;
+    margin-left: 10px;
 }
