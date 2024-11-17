@@ -4,7 +4,10 @@ const previousBtn = document.querySelector(".previous")
 const main = document.querySelector("#main")
 const nextBtn = document.querySelector(".next")
 const searchInput = document.querySelector("#search")
-let interval, searchedPlayers;
+let interval, searchedPlayers, filterPlayers;
+const positionSelect = document.querySelector("#position")
+const teamSelect = document.querySelector("#team")
+const selectFilters = document.querySelector(".select-filters")
 
 if(currentPage == null) currentPage = 1
 if(currentPage == 1) previousBtn.disabled = true
@@ -27,6 +30,42 @@ searchInput.addEventListener("input", (event) => {
 
   }, 500)
 })
+
+selectFilters.addEventListener("change", (event) => {
+  if(event.target.id == "position"){
+    if(event.target.value != "default"){
+      if(teamSelect.value != "default"){
+        filterPlayers = allPlayers.players.filter(player => player.positionId == event.target.value &&  player.team.id == teamSelect.value)
+      }
+      else filterPlayers = allPlayers.players.filter(player => player.positionId == event.target.value)
+    }
+    
+  }
+  else if(event.target.id == "team"){
+    if(event.target.value != "default"){
+      if(positionSelect.value != "default"){
+        filterPlayers = allPlayers.players.filter(player => player.team.id == event.target.value && player.positionId == positionSelect.value)
+      }
+      else filterPlayers = allPlayers.players.filter(player => player.team.id == event.target.value)
+    }
+    
+  }
+  renderPlayers(filterPlayers)
+})
+/* positionSelect.addEventListener("change", (event) => {
+  if(event.target.value != "default"){
+    positionPlayers = allPlayers.players.filter(player => player.positionId == event.target.value)
+
+    renderPlayers(positionPlayers)
+  }
+})
+teamSelect.addEventListener("change", (event) => {
+  if(event.target.value != "default"){
+    positionPlayers = allPlayers.players.filter(player => player.team.id == event.target.value)
+
+    renderPlayers(positionPlayers)
+  }
+}) */
 
 nextBtn.addEventListener("click", async () => {
     const players = await getPlayers(currentPage + 1)

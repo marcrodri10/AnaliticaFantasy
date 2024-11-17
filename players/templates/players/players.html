@@ -15,8 +15,25 @@
   <body>
     <main id="main">
       <h1>Players</h1>
-      <div id="search-player">
-        <input type="text" name="search" id="search">
+      <div id="filters">
+        <div class="search-player">
+          <input type="text" name="search" id="search">
+        </div>
+        <div class="select-filters">
+          <select name="position" id="position">
+            <option value="default">Posición</option>
+            {%for key, value in positions.items%}
+              <option value="{{key}}">{{value}}</option>
+            {%endfor%}
+          </select>
+          <select name="team" id="team">
+            <option value="default">Equipo</option>
+            {%for key, value in teams.items%}
+              
+              <option value="{{key}}">{{value}}</option>
+            {%endfor%}
+          </select>
+        </div>
       </div>
       <div id="players-wrapper">
         {%for player in data_paged%}
