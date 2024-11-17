@@ -3,11 +3,30 @@ let currentPage = PATH.searchParams.get("page")
 const previousBtn = document.querySelector(".previous")
 const main = document.querySelector("#main")
 const nextBtn = document.querySelector(".next")
-
+const searchInput = document.querySelector("#search")
+let interval, searchedPlayers;
 
 if(currentPage == null) currentPage = 1
 if(currentPage == 1) previousBtn.disabled = true
 
+const allPlayers = await getAllPlayers();
+
+searchInput.addEventListener("input", (event) => {
+  clearInterval(interval)
+  interval = setTimeout(() => {
+    if(event.target.value != "") {
+      searchedPlayers = allPlayers.players.filter(player => player.nickname.toLowerCase().includes(event.target.value))
+      document.querySelector(".pagination").style.visibility = "hidden"
+    }
+    else {
+      searchedPlayers = searchedPlayers = allPlayers.players
+      document.querySelector(".pagination").style.visibility = "visible"
+    }
+    
+    renderPlayers(searchedPlayers, 60)
+
+  }, 500)
+})
 
 nextBtn.addEventListener("click", async () => {
     const players = await getPlayers(currentPage + 1)
@@ -24,7 +43,18 @@ previousBtn.addEventListener("click", async () => {
     if(currentPage >= 10) nextBtn.disabled = true
 })
 
-
+async function getAllPlayers() {
+  try {
+      const response = await fetch("/players/get/");
+      if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      return data; // Devolvemos los datos para que puedan ser usados en el resto del código
+  } catch (error) {
+      console.error('Error fetching players:', error);
+  }
+}
 async function getPlayers(currentPage) {
     try {
         const response = await fetch("/players/api/?page="+currentPage);
@@ -57,7 +87,8 @@ function createPlayerHTML(player) {
         1: "POR",
         2: "DEF",
         3: "CEN",
-        4: "DEL"
+        4: "DEL",
+        5: "ENT"
     }
     return `
       <div class="player-wrapper">
@@ -96,10 +127,18 @@ function createPlayerHTML(player) {
       </div>
     `;
   }
-  function renderPlayers(players) {
+  function renderPlayers(players, total=null) {
     const playersWrapper = document.getElementById('players-wrapper');
     playersWrapper.innerHTML = ''; // Limpiar contenido anterior
-    players.forEach(player => {
-      playersWrapper.innerHTML += createPlayerHTML(player);
-    });
+    if(total != null){
+      players.forEach((player, index) => {
+        if(index < total) playersWrapper.innerHTML += createPlayerHTML(player);
+      });
+    }
+    else {
+      players.forEach((player, index) => {
+        playersWrapper.innerHTML += createPlayerHTML(player);
+      });
+    }
+    
   }

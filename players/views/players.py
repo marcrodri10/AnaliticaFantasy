@@ -18,6 +18,7 @@ class PlayersView(View):
         
         if paginator is None:
             players = requests.get("https://api.laligafantasymarca.com/api/v3/players")
+            cache.set("players_data", players.json(), 60*60)
             if players.status_code == 200:
                 ##10pags
                 paginator = Paginator(players.json(), 60)
@@ -51,5 +52,14 @@ class PlayersViewApi(View):
             
         data = {
             "players": list(data_paged)
+        }
+        return JsonResponse(data)
+    
+class Players(View):
+    def get(self, request): 
+
+        players = cache.get("players_data")
+        data = {
+            "players": list(players)
         }
         return JsonResponse(data)

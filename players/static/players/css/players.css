@@ -108,6 +108,10 @@
     background: rgb(14,154,236);
     background: linear-gradient(90deg, rgba(14,154,236,1) 10%, rgba(0,202,252,1) 60%);
 }
+.position-ENT{
+    background: rgb(0,252,180);
+    background: linear-gradient(90deg, rgba(0,252,180,1) 10%, rgba(0,202,252,1) 60%);
+}
 .pagination{
     margin-top: 10px;
     margin-left: 10px;
